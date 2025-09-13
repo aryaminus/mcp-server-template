@@ -10,14 +10,26 @@ from dataclasses import dataclass, asdict, field
 from fastmcp import FastMCP
 
 # Import constants
-from src.const import (
-    PERSONALITIES, 
-    DEFAULT_ACHIEVEMENTS,
-    DEFAULT_CHALLENGES,
-    DEFAULT_LEARNING_PATHS,
-    SPACED_REPETITION_INTERVALS,
-    SERVER_INFO
-)
+# Use relative import when running from src directory
+try:
+    from const import (
+        PERSONALITIES, 
+        DEFAULT_ACHIEVEMENTS,
+        DEFAULT_CHALLENGES,
+        DEFAULT_LEARNING_PATHS,
+        SPACED_REPETITION_INTERVALS,
+        SERVER_INFO
+    )
+except ImportError:
+    # Use package import when running from project root
+    from src.const import (
+        PERSONALITIES, 
+        DEFAULT_ACHIEVEMENTS,
+        DEFAULT_CHALLENGES,
+        DEFAULT_LEARNING_PATHS,
+        SPACED_REPETITION_INTERVALS,
+        SERVER_INFO
+    )
 
 # Initialize the Memory Palace MCP Server
 mcp = FastMCP("Memory Palace MCP Server")
