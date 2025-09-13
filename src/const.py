@@ -10,51 +10,75 @@ Constants for the Memory Palace MCP Server
 PERSONALITIES = {
     "sage": {
         "name": "Sage",
-        "description": "A wise and patient guide who speaks with ancient wisdom",
+        "description": "A friendly wise guide who shares helpful advice",
         "messages": {
-            "welcome": "Welcome, seeker of knowledge. Your Memory Palace awaits your wisdom.",
-            "achievement": "Your mind grows stronger with each memory, young scholar.",
-            "challenge": "A true sage tests their memory regularly. Are you ready for a challenge?",
-            "tip": "Remember, the most vivid visual anchors create the strongest memories.",
-            "streak": "Your dedication to memory practice is most impressive. {streak} days of wisdom!"
+            "welcome": "Hi there! Welcome to your Memory Palace. I'm here to help you remember things better!",
+            "achievement": "Great job! Each time you add a memory, you're getting better at remembering things.",
+            "challenge": "Would you like to play a quick memory game to see what you remember?",
+            "tip": "Try to picture really colorful and funny images - they're easier to remember!",
+            "streak": "Wow! You've practiced {streak} days in a row! Your memory is getting so strong!"
         },
         "emoji": "🧙‍♂️"
     },
     "explorer": {
         "name": "Explorer",
-        "description": "An adventurous guide who treats your memory palace as a world to discover",
+        "description": "An adventurous guide who makes learning feel like a fun journey",
         "messages": {
-            "welcome": "Adventure awaits in your Memory Palace! Let's explore new territories of knowledge!",
-            "achievement": "Fantastic discovery! You've unlocked new regions of your mental map!",
-            "challenge": "Ready for an expedition to test your memory terrain? Let's go!",
-            "tip": "The best explorers mark their discoveries with vivid flags. Make your visual anchors stand out!",
-            "streak": "What an expedition! {streak} days of continuous exploration! Your map grows richer!"
+            "welcome": "Hey there, explorer! Ready for an adventure in your Memory Palace?",
+            "achievement": "Amazing discovery! You've added a new memory to your collection!",
+            "challenge": "Want to go on a treasure hunt through your memories? Let's see what we can find!",
+            "tip": "The sillier and more colorful the picture in your mind, the easier it is to find later!",
+            "streak": "Woohoo! {streak} days of adventure! Your memory map gets bigger every day!"
         },
         "emoji": "🧭"
     },
     "architect": {
         "name": "Architect",
-        "description": "A precise designer who helps you construct your palace with elegant structure",
+        "description": "A friendly builder who helps you organize your memories",
         "messages": {
-            "welcome": "Welcome to your mental blueprint. Let's design something magnificent together.",
-            "achievement": "Excellent construction! Your mental architecture is taking beautiful form.",
-            "challenge": "A good architect tests their structures. Shall we inspect your memory foundations?",
-            "tip": "The strongest memories have precise coordinates. Be exact in your spatial positioning.",
-            "streak": "{streak} days of consistent building! Your memory palace grows more magnificent daily."
+            "welcome": "Hello! I'm your memory builder. Let's create an amazing place for your memories!",
+            "achievement": "You did it! Your memory building is looking better and better!",
+            "challenge": "Should we check how sturdy your memory building is with a quick game?",
+            "tip": "Try to put similar memories near each other - it makes them easier to find later!",
+            "streak": "{streak} days of building memories! You're becoming a master memory builder!"
         },
         "emoji": "👷‍♀️"
     },
     "coach": {
         "name": "Coach",
-        "description": "An energetic memory trainer who pushes you to strengthen your recall",
+        "description": "A friendly and encouraging memory coach who cheers you on",
         "messages": {
-            "welcome": "Let's train that memory muscle! Your Palace awaits your workout!",
-            "achievement": "INCREDIBLE WORK! Your memory is getting STRONGER every day!",
-            "challenge": "No pain, no gain! Ready for a memory challenge to flex those brain muscles?",
-            "tip": "Mental repetition is like memory protein! Review those spaces daily!",
-            "streak": "AMAZING CONSISTENCY! {streak} day streak! You're becoming a memory CHAMPION!"
+            "welcome": "Hi team! Ready to exercise that amazing brain of yours?",
+            "achievement": "Way to go! Your memory is getting stronger every time we practice!",
+            "challenge": "Ready for a quick memory workout? It'll be fun!",
+            "tip": "Just like sports practice, the more you review your memories, the better you'll get!",
+            "streak": "Amazing! {streak} days of practice in a row! You're becoming a memory superstar!"
         },
         "emoji": "🏋️‍♀️"
+    },
+    "friend": {
+        "name": "Friend",
+        "description": "A kind and supportive friend who helps you remember things",
+        "messages": {
+            "welcome": "Hey buddy! So glad you're here! Want to work on remembering things together?",
+            "achievement": "You did it! I knew you could! Your memory palace is looking awesome!",
+            "challenge": "Want to play a fun memory game with me?",
+            "tip": "The funniest and weirdest pictures are the ones we remember best!",
+            "streak": "We've been practicing for {streak} days together! You're doing amazing!"
+        },
+        "emoji": "🤗"
+    },
+    "wizard": {
+        "name": "Wizard",
+        "description": "A friendly memory wizard who makes learning magical and fun",
+        "messages": {
+            "welcome": "Abracadabra! Welcome to your magical Memory Palace! I'm your wizard helper!",
+            "achievement": "Magic happening! You've created a new memory spell!",
+            "challenge": "Shall we test your magical memory powers with a fun challenge?",
+            "tip": "The most magical and sparkly images are the easiest to remember!",
+            "streak": "Magical! You've practiced your memory spells for {streak} days in a row!"
+        },
+        "emoji": "✨"
     }
 }
 
@@ -62,71 +86,71 @@ PERSONALITIES = {
 DEFAULT_ACHIEVEMENTS = {
     "first_room": {
         "id": "first_room",
-        "name": "Architect's Apprentice",
-        "description": "Create your first room in your Memory Palace",
+        "name": "Room Builder",
+        "description": "You made your first memory room!",
         "icon": "🏗️",
         "xp_reward": 50
     },
     "first_memory": {
         "id": "first_memory",
-        "name": "Memory Seedling",
-        "description": "Plant your first memory in your palace",
+        "name": "Memory Maker",
+        "description": "You saved your first memory!",
         "icon": "🌱",
         "xp_reward": 50
     },
     "three_rooms": {
         "id": "three_rooms",
-        "name": "Master Builder",
-        "description": "Create three different rooms in your Memory Palace",
+        "name": "Super Builder",
+        "description": "You made three memory rooms!",
         "icon": "🏛️",
         "xp_reward": 100
     },
     "ten_memories": {
         "id": "ten_memories",
         "name": "Memory Collector",
-        "description": "Store ten memories in your palace",
+        "description": "You saved ten memories!",
         "icon": "💎",
         "xp_reward": 150
     },
     "memory_journey": {
         "id": "memory_journey",
-        "name": "Palace Explorer",
-        "description": "Take your first memory journey",
+        "name": "Memory Explorer",
+        "description": "You took your first memory walk!",
         "icon": "🧭",
         "xp_reward": 75
     },
     "perfect_recall": {
         "id": "perfect_recall",
-        "name": "Perfect Recall",
-        "description": "Successfully recall 5 memories in a row",
+        "name": "Memory Champion",
+        "description": "You remembered 5 memories perfectly!",
         "icon": "🧠",
         "xp_reward": 200
     },
     "three_day_streak": {
         "id": "three_day_streak",
-        "name": "Consistent Scholar",
-        "description": "Use your Memory Palace for 3 days in a row",
+        "name": "Regular Visitor",
+        "description": "You practiced 3 days in a row!",
         "icon": "🔥",
         "xp_reward": 100
     },
     "seven_day_streak": {
         "id": "seven_day_streak",
-        "name": "Memory Master",
-        "description": "Maintain a 7-day practice streak",
+        "name": "Memory Star",
+        "description": "You practiced 7 days in a row!",
         "icon": "🏆",
         "xp_reward": 250
     },
     "first_search": {
         "id": "first_search",
         "name": "Memory Detective",
-        "description": "Successfully search your Memory Palace",
+        "description": "You found a memory by searching!",
         "icon": "🔍",
         "xp_reward": 50
     },
     "connected_rooms": {
         "id": "connected_rooms",
-        "name": "Palace Architect",
-        "description": "Connect three rooms together in your palace",
+        "name": "Room Connector",
+        "description": "You connected three rooms together!",
         "icon": "🔗",
         "xp_reward": 150
     },
@@ -135,8 +159,8 @@ DEFAULT_ACHIEVEMENTS = {
 # Default challenge templates
 DEFAULT_CHALLENGES = {
     "quick_recall": {
-        "name": "Quick Recall",
-        "description": "Recall {count} memories from {room} within 60 seconds",
+        "name": "Memory Sprint",
+        "description": "Can you remember {count} things from your {room} room? Let's play!",
         "difficulty_levels": {
             "easy": {"count": 3, "xp_reward": 50},
             "medium": {"count": 5, "xp_reward": 100},
@@ -144,13 +168,13 @@ DEFAULT_CHALLENGES = {
         }
     },
     "room_mastery": {
-        "name": "Room Mastery",
-        "description": "Recall all memories in {room} with perfect accuracy",
+        "name": "Room Champion",
+        "description": "Try to remember everything in your {room} room!",
         "xp_reward": 150
     },
     "visual_anchors": {
-        "name": "Visual Anchor Challenge",
-        "description": "Match {count} visual anchors to their correct memories",
+        "name": "Picture Match",
+        "description": "Match {count} pictures to the right memories - like a matching game!",
         "difficulty_levels": {
             "easy": {"count": 3, "xp_reward": 75},
             "medium": {"count": 7, "xp_reward": 125},
@@ -158,8 +182,8 @@ DEFAULT_CHALLENGES = {
         }
     },
     "position_recall": {
-        "name": "Spatial Positioning",
-        "description": "Identify the correct 3D coordinates for {count} memories",
+        "name": "Memory Map",
+        "description": "Do you remember where you put {count} of your memories?",
         "difficulty_levels": {
             "easy": {"count": 3, "xp_reward": 100},
             "medium": {"count": 5, "xp_reward": 150},
@@ -167,8 +191,8 @@ DEFAULT_CHALLENGES = {
         }
     },
     "palace_tour": {
-        "name": "Complete Palace Tour",
-        "description": "Visit every room in your Memory Palace in a single journey",
+        "name": "Grand Tour",
+        "description": "Let's visit every room in your memory palace in one big adventure!",
         "xp_reward": 300
     }
 }
@@ -176,94 +200,94 @@ DEFAULT_CHALLENGES = {
 # Default learning paths
 DEFAULT_LEARNING_PATHS = {
     "memory_palace_basics": {
-        "name": "Memory Palace Foundations",
-        "description": "Learn the fundamentals of creating and using a memory palace",
+        "name": "Memory Palace Adventure",
+        "description": "Learn how to make and use your own memory palace",
         "stages": [
             {
-                "name": "Introduction to Memory Palaces",
-                "tasks": ["Create your first room", "Store your first memory"],
+                "name": "First Steps",
+                "tasks": ["Make your first room", "Save your first memory"],
                 "xp_reward": 50
             },
             {
-                "name": "Visual Anchors",
-                "tasks": ["Create 3 memories with vivid visual anchors"],
+                "name": "Memory Pictures",
+                "tasks": ["Save 3 memories with fun pictures to help you remember"],
                 "xp_reward": 75
             },
             {
-                "name": "Spatial Navigation",
-                "tasks": ["Take your first memory journey", "Connect two rooms"],
+                "name": "Memory Walk",
+                "tasks": ["Take a walk through your memories", "Connect two rooms together"],
                 "xp_reward": 100
             },
             {
-                "name": "Memory Expansion",
-                "tasks": ["Create a total of 3 rooms", "Store 10 memories"],
+                "name": "Growing Your Palace",
+                "tasks": ["Make a total of 3 rooms", "Save 10 memories"],
                 "xp_reward": 150
             },
             {
-                "name": "Master Tour",
-                "tasks": ["Complete a tour of your entire palace", "Pass a recall challenge"],
+                "name": "Palace Champion",
+                "tasks": ["Visit all your rooms in one trip", "Play a memory game and win"],
                 "xp_reward": 200
             }
         ]
     },
     "vocabulary_mastery": {
-        "name": "Vocabulary Mastery",
-        "description": "Use your memory palace to master new vocabulary in any subject",
+        "name": "Word Adventure",
+        "description": "Use your memory palace to learn new words for any subject",
         "stages": [
             {
-                "name": "Vocabulary Foundation",
-                "tasks": ["Create a vocabulary-focused room", "Store 5 vocabulary terms"],
+                "name": "Word Collection",
+                "tasks": ["Make a room for your words", "Save 5 words you want to learn"],
                 "xp_reward": 75
             },
             {
-                "name": "Visual Word Association",
-                "tasks": ["Create memories with visual anchors for each word"],
+                "name": "Word Pictures",
+                "tasks": ["Make funny pictures for each word to help you remember them"],
                 "xp_reward": 100
             },
             {
-                "name": "Recall Training",
-                "tasks": ["Successfully recall all vocabulary items", "Add 5 more terms"],
+                "name": "Word Practice",
+                "tasks": ["Try to remember all your words", "Add 5 more new words"],
                 "xp_reward": 125
             },
             {
-                "name": "Context Building",
-                "tasks": ["Create connections between related terms", "Add usage examples"],
+                "name": "Word Connections",
+                "tasks": ["Connect words that go together", "Add examples of how to use the words"],
                 "xp_reward": 150
             },
             {
-                "name": "Vocabulary Mastery",
-                "tasks": ["Perfect recall of all vocabulary", "Complete vocabulary challenge"],
+                "name": "Word Master",
+                "tasks": ["Remember all your words perfectly", "Win the word challenge game"],
                 "xp_reward": 200
             }
         ]
     },
     "study_system": {
-        "name": "Study System Mastery",
-        "description": "Create a comprehensive study system using your memory palace",
+        "name": "Super Study Adventure",
+        "description": "Create an awesome study system using your memory palace",
         "stages": [
             {
-                "name": "Subject Organization",
-                "tasks": ["Create rooms for different subjects", "Connect them logically"],
+                "name": "Subject Rooms",
+                "tasks": ["Make different rooms for different subjects", "Connect them in a way that makes sense"],
                 "xp_reward": 100
             },
             {
-                "name": "Key Concept Placement",
-                "tasks": ["Store key concepts in each subject room"],
+                "name": "Important Ideas",
+                "tasks": ["Save the most important ideas in each subject room"],
                 "xp_reward": 125
             },
             {
-                "name": "Relationship Mapping",
-                "tasks": ["Create connections between related concepts across rooms"],
+                "name": "Idea Connections",
+                "tasks": ["Connect ideas that go together even if they're in different rooms"],
                 "xp_reward": 150
             },
             {
-                "name": "Recall Practice",
-                "tasks": ["Practice daily recall journeys through your subjects"],
+                "name": "Daily Practice",
+                "tasks": ["Practice visiting your memory rooms every day"],
                 "xp_reward": 175
             },
             {
-                "name": "Study System Mastery",
-                "tasks": ["Demonstrate perfect recall across all subjects"],
+                "name": "Study Champion",
+                "tasks": ["Show you can remember everything in all your subjects"],
                 "xp_reward": 250
             }
         ]

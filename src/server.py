@@ -526,7 +526,7 @@ def check_user_progress(user_id: str = "default") -> Dict[str, Any]:
     
     return result
 
-@mcp.tool(description="Create a new room in your memory palace with a name, description, theme, and optional connections to other rooms")
+@mcp.tool(description="Create a new room in your memory palace - like making a special place to store your memories")
 def create_room(name: str, description: str, theme: str = "default", connections: Optional[List[str]] = None) -> dict:
     """Create a new room in the memory palace with gamification elements"""
     rooms = storage.load_rooms()
@@ -586,7 +586,7 @@ def create_room(name: str, description: str, theme: str = "default", connections
     
     return result
 
-@mcp.tool(description="Store a memory at a specific location in your memory palace with visual anchors and spatial positioning")
+@mcp.tool(description="Put a memory in your memory palace - like putting a picture on the wall to help you remember something")
 def store_memory(
     room: str, 
     content: str, 
@@ -688,7 +688,7 @@ def store_memory(
     
     return result
 
-@mcp.tool(description="Take a journey through your memory palace, visiting locations in a specific room or following connections between rooms")
+@mcp.tool(description="Take a walk through your memory palace to see all the memories you've saved")
 def memory_journey(room: str, include_connections: bool = False) -> dict:
     """Take a journey through memories in a room with gamification elements"""
     
@@ -777,7 +777,7 @@ def memory_journey(room: str, include_connections: bool = False) -> dict:
     
     return result
 
-@mcp.tool(description="Search for memories across your memory palace using keywords, room names, or content text")
+@mcp.tool(description="Find memories in your memory palace by telling me what you're looking for")
 def search_memories(query: str, room: Optional[str] = None) -> dict:
     """Search for memories using keywords or content with gamification elements"""
     
@@ -862,7 +862,7 @@ def search_memories(query: str, room: Optional[str] = None) -> dict:
     
     return result
 
-@mcp.tool(description="Get a complete overview of your memory palace including all rooms, their connections, and memory statistics")
+@mcp.tool(description="See everything in your memory palace - like a map of all your memory rooms")
 def get_palace_overview() -> dict:
     """Get an overview of the entire memory palace with gamification elements"""
     
@@ -940,7 +940,7 @@ def get_palace_overview() -> dict:
         "streak_message": generate_message("streak", user_id) if user.streak_days > 0 else None
     }
 
-@mcp.tool(description="Get your user profile with achievements, level, and statistics")
+@mcp.tool(description="See your player card with all the cool badges you've earned")
 def get_user_profile() -> dict:
     """Get detailed information about the user's profile and progress"""
     user_id = "default"
@@ -991,7 +991,7 @@ def get_user_profile() -> dict:
         "progress_message": generate_message("streak", user_id) if user.streak_days > 0 else generate_message("welcome", user_id)
     }
 
-@mcp.tool(description="Change your memory palace guide personality to alter the tone and style of your experience")
+@mcp.tool(description="Choose a different friendly guide to help you with your memory palace")
 def change_personality(personality_type: str) -> dict:
     """Change the user's guide personality"""
     user_id = "default"
@@ -1020,7 +1020,7 @@ def change_personality(personality_type: str) -> dict:
         "welcome_message": f"{new_personality['emoji']} {new_personality['messages']['welcome']}"
     }
 
-@mcp.tool(description="Start a memory challenge to test your recall and earn rewards")
+@mcp.tool(description="Play a fun memory game to see what you remember and win prizes")
 def start_challenge() -> dict:
     """Generate and start a memory challenge"""
     user_id = "default"
@@ -1053,7 +1053,7 @@ def start_challenge() -> dict:
         )
     }
 
-@mcp.tool(description="Get detailed information about the Memory Palace MCP server and its capabilities")
+@mcp.tool(description="Find out all the cool things your memory palace can do")
 def get_server_info() -> dict:
     """Get information about the Memory Palace MCP server"""
     info = SERVER_INFO.copy()
@@ -1064,7 +1064,7 @@ def get_server_info() -> dict:
     })
     return info
 
-@mcp.tool(description="Start a guided learning path to master memory palace techniques")
+@mcp.tool(description="Start a memory adventure with fun missions to complete")
 def start_learning_path(path_id: str) -> dict:
     """Start or continue a guided learning path"""
     user_id = "default"
@@ -1115,7 +1115,7 @@ def start_learning_path(path_id: str) -> dict:
         )
     }
 
-@mcp.tool(description="Update progress on your current learning path")
+@mcp.tool(description="Tell me when you finish a memory mission to get your reward")
 def update_learning_progress(path_id: str, completed_task: str) -> dict:
     """Update progress on a learning path after completing a task"""
     user_id = "default"
@@ -1207,7 +1207,7 @@ def update_learning_progress(path_id: str, completed_task: str) -> dict:
     
     return result
 
-@mcp.tool(description="Get all available learning paths and your progress")
+@mcp.tool(description="See all the fun memory adventures you can go on")
 def get_learning_paths() -> dict:
     """Get information about all learning paths and user progress"""
     user_id = "default"
@@ -1237,7 +1237,7 @@ def get_learning_paths() -> dict:
         "message": "Choose a learning path to enhance your memory palace skills!"
     }
 
-@mcp.tool(description="Set up spaced repetition reminders for your memories")
+@mcp.tool(description="Get friendly reminders to practice your memories so you won't forget them")
 def setup_spaced_repetition(room: str, interval_days: int = 1, message_time: str = "morning") -> dict:
     """Setup spaced repetition reminders for a room"""
     rooms = storage.load_rooms()
@@ -1282,7 +1282,7 @@ def setup_spaced_repetition(room: str, interval_days: int = 1, message_time: str
         "tip": "For best results, take a memory journey through this room each time you receive a reminder."
     }
 
-@mcp.tool(description="Practice recall with a quick memory test")
+@mcp.tool(description="Play a quick memory game to practice what you've learned")
 def practice_recall(room: str, count: int = 3) -> dict:
     """Test your memory with a quick recall practice session"""
     rooms = storage.load_rooms()

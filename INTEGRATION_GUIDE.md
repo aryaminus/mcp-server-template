@@ -19,85 +19,89 @@ This guide explains how to integrate the Memory Palace MCP with Poke and how to 
 
 ### New User Onboarding Flow
 
-When a user first connects, guide them through creating their first memory palace:
+When a user first connects, guide them through creating their first memory palace with friendly, accessible messages:
 
 1. **Welcome Message**
    ```
-   Welcome to Memory Palace! 🏰 The ancient memory technique meets modern AI.
+   Hey there! 👋 Welcome to your Memory Palace! It's a fun way to remember things better.
    
-   Would you like to:
-   1. Create your first memory palace room
-   2. Learn about the memory palace technique
-   3. See example use cases
+   What would you like to do?
+   1. Make your first memory room
+   2. Learn how memory palaces work
+   3. See cool examples of what you can do
    ```
 
 2. **First Room Creation**
    ```
-   Let's create your first memory palace room! 
+   Let's create your first memory room! 🏰
    
-   What are you learning right now that you'd like to remember better? Language vocabulary? Historical dates? Programming concepts?
+   What are you trying to learn right now? Is it:
+   - Words in a new language?
+   - Important dates for history class?
+   - Cool facts about science?
+   - Something else?
    ```
 
 3. **First Memory Storage**
    ```
-   Now let's store your first memory in this room!
+   Now let's add your first memory to this room! 🌟
    
-   What's one important fact or concept from [subject] that you want to remember?
+   What's one important thing about [subject] that you want to remember? Try to think of a funny or colorful picture that will help you remember it!
    ```
 
 4. **First Journey**
    ```
-   Congratulations on creating your first memory! 🎉
+   Woohoo! You created your first memory! 🎉
    
-   Let's take a journey through your memory palace to practice recall. This strengthens the neural connections and makes recall easier in the future.
+   Let's take a walk through your memory room to practice. This helps your brain remember things better, just like practicing sports or music!
    ```
 
 5. **Follow-up Challenge**
    ```
-   Here's a recall challenge for you: 
+   Ready for a quick memory game? 🎮
    
-   What memory did you store at [location]? Try to visualize the room and the visual anchor you created.
+   Can you remember what you put at [location]? Close your eyes and try to picture the room and the funny image you created!
    ```
 
 ### Daily Engagement Flow
 
-Send these messages to maintain user engagement:
+Send these friendly messages to keep users excited about using their memory palace:
 
 1. **Streak Reminder**
    ```
-   🔥 Day 3 of your memory palace streak! Keep it going to unlock the "Consistent Scholar" achievement!
+   🔥 Amazing! You've practiced for 3 days in a row! Keep going to earn your "Regular Visitor" badge!
    
-   Quick review: Take a journey through your [Room Name] to strengthen those memories.
+   Want to take a quick walk through your [Room Name] to practice what you've learned?
    ```
 
 2. **Spaced Repetition Reminder**
    ```
-   📅 Time for your scheduled memory review!
+   📅 Memory practice time! 
    
-   It's been 3 days since you last reviewed your [Room Name]. According to the forgetting curve, this is the perfect time to strengthen these memories!
+   It's been 3 days since you last visited your [Room Name]. This is the perfect time to practice so you don't forget!
    ```
 
 3. **Achievement Notification**
    ```
-   🏆 Achievement Unlocked: Memory Collector!
+   🏆 You earned a new badge: Memory Collector!
    
-   You've stored 10 memories in your palace! +150 XP awarded.
+   You've saved 10 memories in your palace! +150 XP!
    
-   You're now Level 3! Keep building your palace to unlock more achievements.
+   You're now Level 3! Keep adding memories to unlock more cool badges.
    ```
 
 4. **Challenge Invitation**
    ```
-   🧠 Ready for a challenge?
+   🎮 Want to play a fun memory game?
    
-   Your memory coach has prepared a special recall test for your [Room Name]. Complete it perfectly to earn bonus XP!
+   Your memory coach has a special game ready for your [Room Name]. If you win, you'll get bonus points!
    ```
 
 5. **Learning Path Progress**
    ```
-   📚 Learning Path Update: Vocabulary Mastery
+   📚 Word Adventure update:
    
-   You've completed 2/5 stages! Your next goal: Create memories with visual anchors for each word.
+   You've finished 2 out of 5 missions! Your next mission: Make funny pictures for each word to help you remember them.
    ```
 
 ## 🧠 Specific Use Case Examples
@@ -105,36 +109,36 @@ Send these messages to maintain user engagement:
 ### Language Learning
 
 ```
-Your Spanish memory palace has 15 vocabulary words!
+Wow! You've added 15 Spanish words to your memory palace! 🌟
 
-Today's spaced repetition challenge:
-- What was the visual anchor for "biblioteca"?
-- Can you recall the meaning of the word at the central fountain?
+Let's play a quick memory game:
+- Can you remember what picture you used for "biblioteca"?
+- What was the word by the fountain in the middle?
 
-Keep your 5-day streak going! 🔥
+You've practiced 5 days in a row! Keep it up! 🔥
 ```
 
 ### Exam Preparation
 
 ```
-Your History Exam room has reached 75% mastery!
+You know 75% of the stuff in your History Exam room! That's amazing! 🎉
 
-Quiz yourself:
-- Who was visualized at position (2,1,0) in your French Revolution timeline?
-- What event was connected to the grandfather clock in the corner?
+Quick quiz:
+- Who did you picture at the statue in your French Revolution timeline?
+- What important event did you connect to the grandfather clock?
 
-Your exam is in 3 days - keep practicing for maximum recall!
+Your test is in 3 days - a little practice each day will help you remember everything!
 ```
 
 ### Coding Concepts
 
 ```
-Your JavaScript Fundamentals room has 12 memories!
+You've saved 12 cool JavaScript things in your memory palace! 👏
 
-Memory journey highlight:
-"The function declaration syntax is hanging as a painting on the north wall, showing function keyword, name, parameters in parentheses, and code block in curly braces"
+Remember this one?
+"The way to write functions is hanging like a painting on the north wall, showing the function keyword, name, parentheses for inputs, and curly braces for the code"
 
-Next step: Add a section about arrow functions!
+Want to add something about arrow functions next? They're super cool!
 ```
 
 ## 🏆 Gamification Strategy
@@ -142,75 +146,98 @@ Next step: Add a section about arrow functions!
 ### XP and Leveling Messaging
 
 ```
-+25 XP awarded for creating "Chemistry Formulas" room!
-You're 80% of the way to Level 4!
+You got +25 points for making your "Chemistry Formulas" room! 🎉
+You're almost to Level 4!
 
-Benefits at Level 4:
-- Unlock multi-room journeys
-- Access advanced visualization tools
-- Earn double XP on weekends
+Cool stuff you get at Level 4:
+- Visit multiple rooms in one adventure
+- Try out new ways to picture your memories
+- Get double points on weekends
 ```
 
 ### Achievement Announcements
 
 ```
-🏆 You've unlocked "Memory Master"!
-You've maintained your practice streak for 7 days straight.
+🏆 You earned the "Memory Star" badge!
+You practiced 7 days in a row! That's amazing!
 
-Only 5% of users reach this achievement! Your memory palace is growing stronger every day.
+Only 5% of players earn this badge! Your memory palace is getting better every day.
 ```
 
 ### Streak Motivation
 
 ```
-🔥 5-day streak! Your brain is strengthening neural pathways with each review.
+🔥 5 days in a row! Your brain gets stronger each time you practice.
 
-Neuroscience fact: Consistent review at optimal intervals can improve long-term retention by up to 200%!
+Fun fact: When you practice at the right times, you can remember things up to 3 times better!
 
-Coming tomorrow: Day 6 will unlock a special bonus challenge!
+Keep going! Tomorrow you'll unlock a special bonus game!
 ```
 
 ### Personality-Based Messaging
 
 For a user with the "Coach" personality:
 ```
-🏋️‍♀️ AMAZING CONSISTENCY! 7 day streak! You're becoming a memory CHAMPION!
+🏋️‍♀️ WAY TO GO! 7 days of practice in a row! You're becoming a memory superstar!
 
-Let's CRUSH today's recall challenge! Your memory muscles are GROWING with each repetition!
+Let's ace today's memory game! Your brain is getting stronger with every practice!
 ```
 
 For a user with the "Sage" personality:
 ```
-🧙‍♂️ Your mind grows stronger with each memory, young scholar.
+🧙‍♂️ Great job! Each time you add a memory, you're getting better at remembering things.
 
-The ancient practitioners of the memory palace would be impressed by your dedication. Seven days of wisdom!
+Wow! You've practiced for 7 days in a row! Your memory is getting so strong!
+```
+
+For a user with the "Friend" personality:
+```
+🤗 You did it! I knew you could! 7 days of practice together!
+
+Want to play a fun memory game with me? I bet you'll remember everything!
+```
+
+For a user with the "Wizard" personality:
+```
+✨ Magical! You've practiced your memory spells for 7 days in a row!
+
+Your memory powers are growing stronger! Let's see what magical memories you've created!
 ```
 
 ## 📊 Analytics and Progression
 
-Use these messages to keep users informed of their progress:
+Use these friendly messages to keep users excited about their progress:
 
 ```
-📈 Your Memory Palace Stats:
-- 3 rooms created
-- 24 memories stored
-- 67% overall mastery
-- Strongest room: Spanish Vocabulary (85% mastery)
-- Area for improvement: Historical Dates (42% mastery)
+📈 Your Memory Palace Adventure So Far:
+- You made 3 awesome rooms!
+- You saved 24 memories!
+- You know 67% of everything in your palace!
+- Your best room: Spanish Vocabulary (you know 85%!)
+- Room to practice more: Historical Dates (you know 42%)
 
-Recommendation: Take a practice journey through Historical Dates today to strengthen those memories.
+Want to visit your Historical Dates room today? A little practice will help you remember everything better!
 ```
 
 ## 🔄 Re-engagement Strategies
 
-For users who haven't engaged in a while:
+For users who haven't engaged in a while, use friendly, motivational messages:
 
 ```
-We've noticed you haven't visited your memory palace in 5 days.
+Hey there! We haven't seen you in your memory palace for 5 days. We miss you! 👋
 
-Your "Chemistry Formulas" room is at risk of fading! Studies show that memories need regular reinforcement.
+The cool chemistry formulas you saved might be getting harder to remember. Our brains need practice to keep memories strong!
 
-Take a quick 2-minute journey through your palace today to maintain your progress and continue building your memory skills.
+Want to take a quick 2-minute visit to your memory palace today? It'll be fun, and it'll help you remember everything better!
+```
+
+For younger users:
+```
+Your memory palace misses you! 🏰✨
+
+The fun pictures you created are waiting for you to visit them again! Remember that awesome Chemistry room you made?
+
+Want to play a quick memory game today? It only takes 2 minutes and you'll earn bonus points!
 ```
 
 ---

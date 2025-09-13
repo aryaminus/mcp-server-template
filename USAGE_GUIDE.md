@@ -20,7 +20,7 @@ Here are sample messages you can send to start using your Memory Palace MCP:
 ### 1. Create Your First Room
 
 ```
-Create a memory palace room called "Spanish Vocabulary" with the description "A vibrant plaza in Barcelona with colorful buildings and fountains" and the theme "mediterranean"
+I want to make a memory room for my Spanish words. Can you make it look like a sunny plaza in Barcelona with colorful buildings and fountains?
 ```
 
 Your guide will respond with:
@@ -36,7 +36,7 @@ Room 'Spanish Vocabulary' created successfully.
 ### 2. Store Your First Memory
 
 ```
-Store a memory in the Spanish Vocabulary room about "Hola = Hello" with the visual anchor "A smiling sun painted on the central fountain waving hello" at position x=0, y=0, z=0 with keywords spanish, greeting, basic
+I learned that "Hola" means "Hello" in Spanish. Can you put that in my Spanish room? I'm thinking of a big smiling sun on the fountain in the middle that's waving hello.
 ```
 
 Your guide will respond:
@@ -54,7 +54,7 @@ Tip: The best explorers mark their discoveries with vivid flags. Make your visua
 ### 3. Take a Memory Journey
 
 ```
-Take me on a memory journey through my Spanish Vocabulary room
+Can we walk through my Spanish room to see what I've saved there?
 ```
 
 Your guide might respond:
@@ -75,17 +75,17 @@ What an expedition! 1 day of continuous exploration! Your map grows richer!
 ### 4. Store More Memories
 
 ```
-Store a memory in Spanish Vocabulary about "Gracias = Thank you" with the visual anchor "A grateful street performer bowing by the ornate lamp post" at position x=1, y=0, z=0 with keywords spanish, gratitude, basic
+I learned a new Spanish word! "Gracias" means "Thank you". Can you add it to my Spanish room? I'm thinking of a street performer bowing next to a fancy lamp post.
 ```
 
 ```
-Store a memory in Spanish Vocabulary about "Por favor = Please" with the visual anchor "A polite waiter at the corner café with hands folded" at position x=0, y=1, z=0 with keywords spanish, courtesy, basic
+I want to add "Por favor" which means "Please" in Spanish. I'm thinking of a super polite waiter standing at the corner café with his hands folded.
 ```
 
 ### 5. Search Your Palace
 
 ```
-Search my memory palace for "spanish greeting"
+Can you help me find the Spanish greeting I saved? I can't remember exactly what it was.
 ```
 
 Your guide will respond:
@@ -110,7 +110,7 @@ Relevance score: 2
 You can change your guide's personality to match your learning style:
 
 ```
-Change my memory palace guide personality to coach
+I'd like a different guide for my memory palace. Can I have a coach who will cheer me on?
 ```
 
 Response:
@@ -125,7 +125,7 @@ Available personalities: `sage`, `explorer`, `architect`, `coach`
 ### Start a Learning Path
 
 ```
-Show me available learning paths
+What memory adventures can I go on?
 ```
 
 Response:
@@ -146,7 +146,7 @@ Learning paths available:
 
 Then:
 ```
-Start the Vocabulary Mastery learning path
+I want to start the Word Adventure to help me learn new words!
 ```
 
 Response:
@@ -166,7 +166,7 @@ Complete these tasks to advance to the next stage and earn +75 XP!
 For optimal long-term memory, set up reminders:
 
 ```
-Set up spaced repetition reminders for my Spanish Vocabulary room
+Can you send me reminders to practice my Spanish words so I don't forget them?
 ```
 
 Response:
@@ -184,7 +184,7 @@ Tip: For best results, take a memory journey through this room each time you rec
 ### Practice Your Recall
 
 ```
-Let me practice recall for Spanish Vocabulary with 3 memories
+I want to play a memory game with my Spanish words to see if I can remember them!
 ```
 
 Response:
@@ -211,7 +211,7 @@ For each question, try to recall the content stored at that location. The more a
 As you use your Memory Palace, you'll earn XP and unlock achievements:
 
 ```
-Show me my user profile
+Can I see my player card with all the badges I've earned?
 ```
 
 Response:
@@ -247,7 +247,7 @@ What an expedition! 1 day of continuous exploration! Your map grows richer!
 Get a complete overview of your memory system:
 
 ```
-Show me my memory palace overview
+Can I see a map of my whole memory palace?
 ```
 
 Response:
