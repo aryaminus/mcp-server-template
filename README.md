@@ -105,3 +105,11 @@ This MCP server addresses a unique gap in knowledge management by:
 5. **AI-Enhanced**: Combines ancient techniques with modern AI assistance
 
 Perfect for students, researchers, programmers, and anyone who wants to organize and recall information more effectively!
+
+## How to Add Your New MCP to Poke
+
+![Poke integration setup](poke-integration.png)
+
+Want to integrate your Model Context Protocol (MCP) server with Poke?
+
+Go to https://poke.com/settings/connections/integrations/new to add your MCP integration.
