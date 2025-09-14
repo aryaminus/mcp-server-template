@@ -910,7 +910,7 @@ def get_palace_overview() -> dict:
     
     for room_name, room in rooms.items():
         room_location_count = len([
-            loc for loc_id in room.locations 
+            loc_id for loc_id in room.locations 
             if loc_id in locations
         ])
         
@@ -1446,17 +1446,27 @@ def ask(prompt: str) -> dict:
 
     # Store memory
     if re.search(r"\b(remember|save|store)\b.*\b(memory|this)\b", text):
-        room_match = extract_quoted(prompt) or re.search(r"in\s+([A-Za-z0-9 _\-]+)", prompt, re.IGNORECASE)
+        # Capture room: prefer the explicit "in <room>" (supports curly quotes)
+        room_match = re.search(r"\bin\s+([\"'“”‘’]?)([A-Za-z0-9 _\-]+)\1(?!\w)", prompt, re.IGNORECASE)
+        quoted = extract_quoted(prompt)
         room_name = None
         content = None
         if isinstance(room_match, re.Match):
-            room_name = room_match.group(1).strip()
-        # Content after a colon or after "that|about"
+            room_name = room_match.group(2).strip()
+        # If not found, try to take the last quoted phrase before the colon as the room
+        if not room_name and quoted and ':' in prompt:
+            before_colon = prompt.split(':', 1)[0]
+            q2 = re.search(r"[\"'“”‘’]([^\"”’']+)[\"”’'“]", before_colon)
+            if q2:
+                room_name = q2.group(1).strip()
+        # Content after a colon
         content_match = re.search(r":\s*(.+)$", prompt)
         if content_match:
             content = content_match.group(1).strip()
-        if not content:
-            content = extract_quoted(prompt)
+        if not content and quoted:
+            # If a quoted phrase exists and it's not the room name, use it as content
+            if not room_name or quoted.strip().lower() != room_name.strip().lower():
+                content = quoted
         content = content or "A helpful memory"
         room_name = room_name or DEFAULT_ROOM_NAME
         # Visual anchor
@@ -1495,7 +1505,7 @@ def ask(prompt: str) -> dict:
     # Search
     if re.search(r"\b(find|search|look for|where is|show me)\b", text):
         # Extract room first (if any) – allow curly quotes
-        room_match = re.search(r"\bin\s+([\"'“”‘’]?)([A-Za-z0-9 _\-]+)\1\b", prompt, re.IGNORECASE)
+        room_match = re.search(r"\bin\s+([\"'“”‘’]?)([A-Za-z0-9 _\-]+)\1(?!\w)", prompt, re.IGNORECASE)
         room = room_match.group(2).strip() if room_match else None
         # Capture everything after the verb, then strip trailing "in <room>"
         mverb = re.search(r"\b(find|search|look for|where is|show me)\b\s+([^\n]+)$", prompt, re.IGNORECASE)
@@ -1505,7 +1515,7 @@ def ask(prompt: str) -> dict:
         elif query:
             q2 = re.sub(r"\s+in\s+[\"'“”‘’]?[A-Za-z0-9 _\-]+[\"'“”‘’]?\s*$", "", query, flags=re.IGNORECASE)
             if q2 != query and not room:
-                mroom = re.search(r"\bin\s+([\"'“”‘’]?)([A-Za-z0-9 _\-]+)\1\b", prompt, re.IGNORECASE)
+                mroom = re.search(r"\bin\s+([\"'“”‘’]?)([A-Za-z0-9 _\-]+)\1(?!\w)", prompt, re.IGNORECASE)
                 room = mroom.group(2).strip() if mroom else None
                 query = q2
             else:
@@ -1535,9 +1545,9 @@ def ask(prompt: str) -> dict:
 
     # Practice recall
     if re.search(r"\b(quiz|test|practice)\b", text):
-        # Prefer quoted room; otherwise capture up to " with <N> questions" or end
-        m_room = re.search(r"in\s+([A-Za-z0-9 _\-]+?)(?:\s+with\b|$)", prompt, re.IGNORECASE)
-        room = extract_quoted(prompt) or (m_room.group(1) if m_room else None)
+        # Prefer quoted room; otherwise capture up to " with <N> questions" or end (support curly quotes)
+        m_room = re.search(r"in\s+([\"'“”‘’]?)([A-Za-z0-9 _\-]+)\1(?:\s+with\b|$)", prompt, re.IGNORECASE)
+        room = extract_quoted(prompt) or (m_room.group(2) if m_room else None)
         room = room or DEFAULT_ROOM_NAME
         count_match = re.search(r"(with|for)\s+(\d+)\s+(questions?)", prompt, re.IGNORECASE)
         count = int(count_match.group(2)) if count_match else 3
