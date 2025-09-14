@@ -1420,7 +1420,8 @@ def ask(prompt: str) -> dict:
     text = prompt.strip().lower()
 
     def extract_quoted(original: str) -> Optional[str]:
-        m = re.search(r"'([^']+)'|\"([^\"]+)\"", original)
+        # Support straight and curly quotes: ' " “ ” ‘ ’
+        m = re.search(r"[\"'“”‘’]([^\"”’']+)[\"”’'“]", original)
         if not m:
             return None
         return m.group(1) or m.group(2)
@@ -1493,17 +1494,32 @@ def ask(prompt: str) -> dict:
 
     # Search
     if re.search(r"\b(find|search|look for|where is|show me)\b", text):
-        # Extract room first (if any)
-        room_match = re.search(r"\bin\s+(['\"]?)([A-Za-z0-9 _\-]+)\1\b", prompt, re.IGNORECASE)
+        # Extract room first (if any) – allow curly quotes
+        room_match = re.search(r"\bin\s+([\"'“”‘’]?)([A-Za-z0-9 _\-]+)\1\b", prompt, re.IGNORECASE)
         room = room_match.group(2).strip() if room_match else None
-        # Query is quoted or after the verb
-        query = extract_quoted(prompt)
+        # Capture everything after the verb, then strip trailing "in <room>"
+        mverb = re.search(r"\b(find|search|look for|where is|show me)\b\s+([^\n]+)$", prompt, re.IGNORECASE)
+        query = (mverb.group(2).strip() if mverb else "")
+        if room and query:
+            query = re.sub(r"\s+in\s+[\"'“”‘’]?" + re.escape(room) + r"[\"'“”‘’]?\s*$", "", query, flags=re.IGNORECASE)
+        elif query:
+            q2 = re.sub(r"\s+in\s+[\"'“”‘’]?[A-Za-z0-9 _\-]+[\"'“”‘’]?\s*$", "", query, flags=re.IGNORECASE)
+            if q2 != query and not room:
+                mroom = re.search(r"\bin\s+([\"'“”‘’]?)([A-Za-z0-9 _\-]+)\1\b", prompt, re.IGNORECASE)
+                room = mroom.group(2).strip() if mroom else None
+                query = q2
+            else:
+                query = q2
+        # Trim surrounding quotes from query
+        if query and len(query) >= 2 and query[0] in "\"'“”‘’" and query[-1] in "\"'“”‘’":
+            query = query[1:-1]
+        # If the only quoted text was the room, fall back to non-quoted words
+        if room and query and query.strip().lower() == room.strip().lower():
+            query = ""
         if not query:
-            m = re.search(r"\b(find|search|look for|where is|show me)\b\s+([^\n]+)", prompt, re.IGNORECASE)
-            query = m.group(2).strip() if m else ""
-        # If query contains trailing "in <room>", strip it
-        if room:
-            query = re.sub(r"\s+in\s+['\"]?" + re.escape(room) + r"['\"]?\s*$", "", query, flags=re.IGNORECASE)
+            q = extract_quoted(prompt)
+            if q and (not room or q.strip().lower() != room.strip().lower()):
+                query = q
         result = search_memories.fn(query=query, room=room)
         return {"action": "search_memories", "result": result}
 
