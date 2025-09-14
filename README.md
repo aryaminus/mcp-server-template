@@ -108,8 +108,8 @@ Perfect for students, researchers, programmers, and anyone who wants to organize
 
 ## How to Add Your New MCP to Poke
 
-![Poke integration setup](poke-integration.png)
+![Poke integration setup](image/poke-integration.png)
 
 Want to integrate your Model Context Protocol (MCP) server with Poke?
 
-Go to https://poke.com/settings/connections/integrations/new to add your MCP integration.
+Go to https://poke.com/settings/connections/integrations/new to add `https://memory-palace-mcp.onrender.com/mcp` integration.
