@@ -12,7 +12,7 @@ The Memory Palace (Method of Loci) is an ancient mnemonic technique where you vi
 - **Search Spatially** - find information by location, keywords, or visual cues
 - **Build Connected Knowledge** through room connections and relationships
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/InteractionCo/mcp-server-template)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/aryaminus/memory-palace-mcp)
 
 ## Local Development
 
@@ -21,8 +21,8 @@ The Memory Palace (Method of Loci) is an ancient mnemonic technique where you vi
 Fork the repo, then run:
 
 ```bash
-git clone <your-repo-url>
-cd mcp-server-template
+git clone https://github.com/aryaminus/memory-palace-mcp
+cd memory-palace-mcp
 conda create -n mcp-server python=3.13
 conda activate mcp-server
 pip install -r requirements.txt
