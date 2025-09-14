@@ -314,3 +314,26 @@ SERVER_INFO = {
     ],
     "storage_type": "local_json"
 }
+
+# ===========================================
+# Defaults for Natural-Language Routing & UX
+# ===========================================
+
+# Default room and content helpers
+DEFAULT_ROOM_NAME = "Study Hall"
+DEFAULT_ROOM_DESCRIPTION = "A cozy place for your memories"
+DEFAULT_VISUAL_ANCHOR = "A big colorful note on the wall"
+
+# Personality types list (for easy validation)
+PERSONALITY_TYPES = list(PERSONALITIES.keys())
+
+# Friendly example suggestions when input is unclear
+DEFAULT_IDEA_SUGGESTIONS = [
+    "Make a room called 'Study Hall'",
+    "Save a memory in 'Study Hall': The sun is a star",
+    "Walk through 'Study Hall'",
+    "Find photosynthesis in 'Study Hall'",
+    "Quiz me in 'Study Hall' with 3 questions",
+    "Remind me to practice 'Study Hall'",
+    "Be my wizard"
+]

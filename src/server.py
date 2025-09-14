@@ -4,6 +4,7 @@ import json
 import hashlib
 import random
 import time
+import re
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Tuple, Any
 from dataclasses import dataclass, asdict, field
@@ -18,7 +19,12 @@ try:
         DEFAULT_CHALLENGES,
         DEFAULT_LEARNING_PATHS,
         SPACED_REPETITION_INTERVALS,
-        SERVER_INFO
+        SERVER_INFO,
+        DEFAULT_ROOM_NAME,
+        DEFAULT_ROOM_DESCRIPTION,
+        DEFAULT_VISUAL_ANCHOR,
+        PERSONALITY_TYPES,
+        DEFAULT_IDEA_SUGGESTIONS
     )
 except ImportError:
     # Use package import when running from project root
@@ -28,7 +34,12 @@ except ImportError:
         DEFAULT_CHALLENGES,
         DEFAULT_LEARNING_PATHS,
         SPACED_REPETITION_INTERVALS,
-        SERVER_INFO
+        SERVER_INFO,
+        DEFAULT_ROOM_NAME,
+        DEFAULT_ROOM_DESCRIPTION,
+        DEFAULT_VISUAL_ANCHOR,
+        PERSONALITY_TYPES,
+        DEFAULT_IDEA_SUGGESTIONS
     )
 
 # Initialize the Memory Palace MCP Server
@@ -566,7 +577,12 @@ def create_room(name: str, description: str, theme: str = "default", connections
         "message": f"Room '{name}' created successfully",
         "room": asdict(new_room),
         "xp_gained": xp_reward,
-        "welcome_message": welcome_message
+        "welcome_message": welcome_message,
+        "next_steps": [
+            f"Add a memory in '{name}' by saying: Save a memory in '{name}'.",
+            f"Take a walk through '{name}' by saying: Walk through '{name}'.",
+            f"Set reminders for '{name}' by saying: Remind me to practice '{name}'."
+        ]
     }
     
     # Add any progress-based messages
@@ -666,7 +682,12 @@ def store_memory(
         "location_id": location_id,
         "location": asdict(new_location),
         "xp_gained": xp_reward,
-        "memory_message": memory_message
+        "memory_message": memory_message,
+        "next_steps": [
+            f"Find it later by saying: Find '{content[:20]}'.",
+            f"Take a walk through '{room}' by saying: Walk through '{room}'.",
+            f"Practice recall by saying: Quiz me in '{room}'."
+        ]
     }
     
     # Add progress messages
@@ -755,7 +776,12 @@ def memory_journey(room: str, include_connections: bool = False) -> dict:
         "journey_path": journey_path,
         "total_memories": len(journey_path),
         "xp_gained": xp_reward,
-        "journey_message": generate_message("challenge", user_id)
+        "journey_message": generate_message("challenge", user_id),
+        "next_steps": [
+            f"Practice recall by saying: Quiz me in '{room}'.",
+            f"Add another memory by saying: Save a memory in '{room}'.",
+            f"Set reminders by saying: Remind me to practice '{room}'."
+        ]
     }
     
     if include_connections and current_room.connections:
@@ -842,7 +868,15 @@ def search_memories(query: str, room: Optional[str] = None) -> dict:
         "room_filter": room,
         "results_count": len(results),
         "results": results,
-        "xp_gained": xp_reward if results else 0
+        "xp_gained": xp_reward if results else 0,
+        "next_steps": (
+            [
+                (f"Take a walk through '{room}' by saying: Walk through '{room}'." if room else "Take a walk by saying: Walk through 'Study Hall'."),
+                (f"Quiz me in '{room}' by saying: Quiz me in '{room}'." if room else "Quiz me by saying: Quiz me in 'Study Hall'.")
+            ] if results else [
+                (f"Add a memory by saying: Save a memory in '{room}'." if room else "Create a room by saying: Make a room called 'Study Hall'.")
+            ]
+        )
     }
     
     # Add personality-based messages
@@ -937,7 +971,15 @@ def get_palace_overview() -> dict:
             "total_achievements": len(unlocked_achievements)
         },
         "unlocked_achievements": unlocked_achievements,
-        "streak_message": generate_message("streak", user_id) if user.streak_days > 0 else None
+        "streak_message": generate_message("streak", user_id) if user.streak_days > 0 else None,
+        "next_steps": (
+            [
+                "Make your first room by saying: Make a room called 'Study Hall'."
+            ] if len(rooms) == 0 else [
+                f"Add a memory by saying: Save a memory in '{list(rooms.keys())[0]}'.",
+                f"Walk through a room by saying: Walk through '{list(rooms.keys())[0]}'."
+            ]
+        )
     }
 
 @mcp.tool(description="See your player card with all the cool badges you've earned")
@@ -1017,7 +1059,11 @@ def change_personality(personality_type: str) -> dict:
             "description": new_personality["description"],
             "emoji": new_personality["emoji"]
         },
-        "welcome_message": f"{new_personality['emoji']} {new_personality['messages']['welcome']}"
+        "welcome_message": f"{new_personality['emoji']} {new_personality['messages']['welcome']}",
+        "next_steps": [
+            "See your palace by saying: Show my memory palace.",
+            "Make a room by saying: Make a room called 'Study Hall'."
+        ]
     }
 
 @mcp.tool(description="Play a fun memory game to see what you remember and win prizes")
@@ -1050,7 +1096,11 @@ def start_challenge() -> dict:
         "guidance": (
             "To complete this challenge, recall the content of the targeted memories. "
             "The more accurately you recall, the higher your score!"
-        )
+        ),
+        "next_steps": [
+            "Take a walk through your room to review.",
+            "Add a new memory to make it more fun!"
+        ]
     }
 
 @mcp.tool(description="Find out all the cool things your memory palace can do")
@@ -1234,7 +1284,11 @@ def get_learning_paths() -> dict:
     
     return {
         "learning_paths": user_paths,
-        "message": "Choose a learning path to enhance your memory palace skills!"
+        "message": "Choose a learning path to enhance your memory palace skills!",
+        "next_steps": [
+            "Start the basics by saying: Start Memory Palace Adventure.",
+            "Or start Word Adventure by saying: Start Word Adventure."
+        ]
     }
 
 @mcp.tool(description="Get friendly reminders to practice your memories so you won't forget them")
@@ -1279,7 +1333,11 @@ def setup_spaced_repetition(room: str, interval_days: int = 1, message_time: str
             "Spaced repetition is scientifically proven to improve long-term memory. "
             "You'll receive reminders to review this room at gradually increasing intervals."
         ),
-        "tip": "For best results, take a memory journey through this room each time you receive a reminder."
+        "tip": "For best results, take a memory journey through this room each time you receive a reminder.",
+        "next_steps": [
+            f"Walk through '{room}' by saying: Walk through '{room}'.",
+            f"Quiz me in '{room}' by saying: Quiz me in '{room}'."
+        ]
     }
 
 @mcp.tool(description="Play a quick memory game to practice what you've learned")
@@ -1337,7 +1395,183 @@ def practice_recall(room: str, count: int = 3) -> dict:
         "guidance": (
             "For each question, try to recall the content stored at that location. "
             "The more accurately you can recall, the stronger your memory palace becomes!"
-        )
+        ),
+        "next_steps": [
+            f"Walk through '{room}' by saying: Walk through '{room}'.",
+            f"Add a new memory by saying: Save a memory in '{room}'."
+        ]
+    }
+
+@mcp.tool(description="Talk to your memory palace in simple words; I'll figure out what to do")
+def ask(prompt: str) -> dict:
+    """Understand simple natural language and do the right thing.
+
+    Examples:
+    - "make a room called Study Hall"
+    - "save a memory in Study Hall: the sun is a star"
+    - "walk through Study Hall"
+    - "find photosynthesis in Study Hall"
+    - "quiz me in Study Hall with 3 questions"
+    - "remind me to practice Study Hall"
+    - "be my wizard"
+    - "start memory palace adventure"
+    """
+
+    text = prompt.strip().lower()
+
+    def extract_quoted(original: str) -> Optional[str]:
+        m = re.search(r"'([^']+)'|\"([^\"]+)\"", original)
+        if not m:
+            return None
+        return m.group(1) or m.group(2)
+
+    # Create room
+    if re.search(r"\b(create|make|new)\b.*\broom\b", text):
+        room_name = extract_quoted(prompt) or re.search(r"(called|named)\s+([\w \-]{2,})", prompt, re.IGNORECASE)
+        if isinstance(room_name, re.Match):
+            room_name = room_name.group(2).strip()
+        room_name = room_name or DEFAULT_ROOM_NAME
+        description = DEFAULT_ROOM_DESCRIPTION
+        theme_match = re.search(r"theme\s+(\w+)", prompt, re.IGNORECASE)
+        theme = theme_match.group(1) if theme_match else "default"
+        result = create_room.fn(name=room_name, description=description, theme=theme)
+        return {"action": "create_room", "result": result}
+
+    # Change personality
+    persona_match = next((p for p in PERSONALITY_TYPES if re.search(rf"\b{p}\b", text)), None)
+    if persona_match and re.search(r"\b(be|switch|change)\b", text):
+        result = change_personality.fn(personality_type=persona_match)
+        return {"action": "change_personality", "result": result}
+
+    # Store memory
+    if re.search(r"\b(remember|save|store)\b.*\b(memory|this)\b", text):
+        room_match = extract_quoted(prompt) or re.search(r"in\s+([A-Za-z0-9 _\-]+)", prompt, re.IGNORECASE)
+        room_name = None
+        content = None
+        if isinstance(room_match, re.Match):
+            room_name = room_match.group(1).strip()
+        # Content after a colon or after "that|about"
+        content_match = re.search(r":\s*(.+)$", prompt)
+        if content_match:
+            content = content_match.group(1).strip()
+        if not content:
+            content = extract_quoted(prompt)
+        content = content or "A helpful memory"
+        room_name = room_name or DEFAULT_ROOM_NAME
+        # Visual anchor
+        anchor_match = re.search(r"(anchor|picture|image)\s*(?:is|:)\s*([^,.;]+)", prompt, re.IGNORECASE)
+        visual_anchor = anchor_match.group(2).strip() if anchor_match else DEFAULT_VISUAL_ANCHOR
+        # Position
+        pos_match = re.search(r"(at|position)\s*(\-?\d+(?:\.\d+)?)[, ]\s*(\-?\d+(?:\.\d+)?)[, ]\s*(\-?\d+(?:\.\d+)?)", prompt, re.IGNORECASE)
+        if pos_match:
+            x_val, y_val, z_val = float(pos_match.group(2)), float(pos_match.group(3)), float(pos_match.group(4))
+        else:
+            x_val, y_val, z_val = 0.0, 0.0, 0.0
+        # Keywords
+        kw_match = re.search(r"keywords?\s*:\s*([^\n]+)", prompt, re.IGNORECASE)
+        keywords = [k.strip() for k in kw_match.group(1).split(',')] if kw_match else []
+        # Auto-create room if needed
+        rooms = storage.load_rooms()
+        if room_name not in rooms:
+            create_room.fn(name=room_name, description=DEFAULT_ROOM_DESCRIPTION)
+        result = store_memory.fn(room=room_name, content=content, visual_anchor=visual_anchor, x=x_val, y=y_val, z=z_val, keywords=keywords)
+        return {"action": "store_memory", "result": result}
+
+    # Journey
+    if re.search(r"\b(journey|walk|tour|show)\b.*\b(room|memories|through)\b", text):
+        room = extract_quoted(prompt)
+        if not room:
+            m = re.search(r"through\s+([A-Za-z0-9 _\-]+)|in\s+([A-Za-z0-9 _\-]+)", prompt, re.IGNORECASE)
+            room = (m.group(1) if m and m.group(1) else (m.group(2) if m else None))
+        room = room or DEFAULT_ROOM_NAME
+        # Auto-create empty room if missing to avoid confusion
+        rooms = storage.load_rooms()
+        if room not in rooms:
+            create_room.fn(name=room, description=DEFAULT_ROOM_DESCRIPTION)
+        result = memory_journey.fn(room=room)
+        return {"action": "memory_journey", "result": result}
+
+    # Search
+    if re.search(r"\b(find|search|look for|where is|show me)\b", text):
+        # Extract room first (if any)
+        room_match = re.search(r"\bin\s+(['\"]?)([A-Za-z0-9 _\-]+)\1\b", prompt, re.IGNORECASE)
+        room = room_match.group(2).strip() if room_match else None
+        # Query is quoted or after the verb
+        query = extract_quoted(prompt)
+        if not query:
+            m = re.search(r"\b(find|search|look for|where is|show me)\b\s+([^\n]+)", prompt, re.IGNORECASE)
+            query = m.group(2).strip() if m else ""
+        # If query contains trailing "in <room>", strip it
+        if room:
+            query = re.sub(r"\s+in\s+['\"]?" + re.escape(room) + r"['\"]?\s*$", "", query, flags=re.IGNORECASE)
+        result = search_memories.fn(query=query, room=room)
+        return {"action": "search_memories", "result": result}
+
+    # Spaced repetition reminders
+    if re.search(r"\b(remind|reminders|spaced repetition)\b", text):
+        room = extract_quoted(prompt) or (re.search(r"for\s+([A-Za-z0-9 _\-]+)", prompt, re.IGNORECASE).group(1) if re.search(r"for\s+([A-Za-z0-9 _\-]+)", prompt, re.IGNORECASE) else None)
+        room = room or DEFAULT_ROOM_NAME
+        rooms = storage.load_rooms()
+        if room not in rooms:
+            create_room.fn(name=room, description=DEFAULT_ROOM_DESCRIPTION)
+        result = setup_spaced_repetition.fn(room=room)
+        return {"action": "setup_spaced_repetition", "result": result}
+
+    # Practice recall
+    if re.search(r"\b(quiz|test|practice)\b", text):
+        # Prefer quoted room; otherwise capture up to " with <N> questions" or end
+        m_room = re.search(r"in\s+([A-Za-z0-9 _\-]+?)(?:\s+with\b|$)", prompt, re.IGNORECASE)
+        room = extract_quoted(prompt) or (m_room.group(1) if m_room else None)
+        room = room or DEFAULT_ROOM_NAME
+        count_match = re.search(r"(with|for)\s+(\d+)\s+(questions?)", prompt, re.IGNORECASE)
+        count = int(count_match.group(2)) if count_match else 3
+        rooms = storage.load_rooms()
+        if room not in rooms:
+            create_room.fn(name=room, description=DEFAULT_ROOM_DESCRIPTION)
+        result = practice_recall.fn(room=room, count=count)
+        return {"action": "practice_recall", "result": result}
+
+    # Learning paths list
+    if re.search(r"\b(learning paths|paths|courses|what can i learn)\b", text):
+        result = get_learning_paths.fn()
+        return {"action": "get_learning_paths", "result": result}
+
+    # Start learning path
+    if re.search(r"\b(start|begin)\b.*\b(memory palace|adventure|basics|word adventure|vocabulary|study)\b", text):
+        if re.search(r"\b(word|vocabulary)\b", text):
+            path_id = "vocabulary_mastery"
+        elif re.search(r"\b(study)\b", text):
+            path_id = "study_system"
+        else:
+            path_id = "memory_palace_basics"
+        result = start_learning_path.fn(path_id=path_id)
+        return {"action": "start_learning_path", "result": result}
+
+    # Start challenge / game
+    if re.search(r"\b(challenge|game)\b", text):
+        result = start_challenge.fn()
+        return {"action": "start_challenge", "result": result}
+
+    # Profile / info
+    if re.search(r"\b(profile|badges|level|xp)\b", text):
+        result = get_user_profile.fn()
+        return {"action": "get_user_profile", "result": result}
+
+    if re.search(r"\b(server info|help|what can you do)\b", text):
+        result = get_server_info.fn()
+        return {"action": "get_server_info", "result": result}
+
+    # Overview fallback
+    if re.search(r"\b(overview|map|everything|show all|show my memory palace)\b", text):
+        result = get_palace_overview.fn()
+        return {"action": "get_palace_overview", "result": result}
+
+    # If we can't figure it out, be helpful and show ideas
+    ideas = DEFAULT_IDEA_SUGGESTIONS
+    return {
+        "action": "unknown",
+        "message": "I didn't understand yet, but here are things you can say:",
+        "suggestions": ideas
     }
 
 if __name__ == "__main__":
